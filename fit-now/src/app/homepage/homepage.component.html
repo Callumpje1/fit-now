@@ -1,0 +1,26 @@
+<div class="welcome-banner bg-gray-50 text-white p-4 h-96 flex flex-col items-start justify-center text-gray-800">
+    <h1 class="text-4xl font-bold ms-2 ">Welcome Callum,</h1>
+    <h3 class="text-2xl mt-3 ms-2">Are you ready for a new workout?</h3>
+</div>
+
+<div class="exercise-list mt-2 flex flex-row">
+    <!-- Loop through each exercise in the exerciseList array -->
+    <div class="flex flex-row" *ngFor="let exercise of exerciseList">
+        <div class="card rounded-md p-8 mt-8 mr-8 relative" (click)="selectExercise(exercise)" style="cursor: pointer;">
+            <img [src]="exercise.image" alt={{exercise.name}} class="w-full">
+            <div class="overlay absolute inset-0 bg-black opacity-50 rounded-md" style="margin: 1rem;"></div>
+            <div class="overlay-content absolute inset-0 flex flex-col items-center justify-center text-white">
+                <!-- Display the name of the exercise -->
+                <h3 class="text-3xl font-bold mt-4">{{exercise.name}}</h3>
+                <!-- Display the description of the exercise -->
+                <p class="text-lg font-bold mt-4">{{exercise.description}}</p>
+                <button class="bg-green-500 hover:bg-green-600 text-white font-bold p-4 rounded absolute bottom-4 right-4 mr-3 mb-3">
+                    <i class="material-icons">add</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- display exercise detail component if exercise is clicked -->
+<app-exercise-detail *ngIf="selectedExercise" [exercise]="selectedExercise"></app-exercise-detail>
